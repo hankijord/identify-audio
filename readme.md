@@ -30,11 +30,11 @@ Usage
 
 - Run using `python main.py` while music is playing. 
 
-- GIFs to the `gif/` folder if a match is found. Each time a new song found, the folder is emptied and replaced with the new song gifs. The program will continue to run until you stop it. 
+- GIFs are downloaded to the `gif/` folder if a match is found. Each time a new song found, the folder is emptied and replaced with the new song gifs.
 - `RECORD_INTERVAL_MIN` (in `main.py`) determines how long the program will wait before trying to identify another song.
 - `GIF_LIMIT` (in `main.py`) determines the amount of GIFs downloaded for each term (artist, track, mood).
 
-TODO
+Todo
 ------------
 - [ ] Sync speed of GIF to the song BPM
 
