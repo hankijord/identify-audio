@@ -8,7 +8,7 @@ Identify any audio playing on your computer (or microphone) and automatically do
 Installation (OSX 64 bit)
 ---------------------
 
-1. Install PyAudio, [Soundflower](https://github.com/mattingalls/Soundflower) and [SwitchAudioSource](https://github.com/deweller/switchaudio-osx).  
+1. Install [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/), [Soundflower](https://github.com/mattingalls/Soundflower) and [SwitchAudioSource](https://github.com/deweller/switchaudio-osx).  
 
 2. Install the dependencies: `pip install -r requirements.txt`
 
@@ -28,11 +28,13 @@ Installation (OSX 64 bit)
 Usage
 -----
 
-Run using `python main.py` while music is playing. 
-It will try a few times to identify the track and download GIFs to the `gif/` folder if a match is found. 
-Each time a new song found, the folder is emptied and replaced with the new song gifs. The program will continue to run every minute, until you stop it. The interval time for when a song is identified can be changed by setting the `RECORD_INTERVAL_MIN` value in `main.py`. The amount of GIFs downloaded for each term can also be changed through the `GIF_LIMIT` value.
+- Run using `python main.py` while music is playing. 
+
+- GIFs to the `gif/` folder if a match is found. Each time a new song found, the folder is emptied and replaced with the new song gifs. The program will continue to run until you stop it. 
+- `RECORD_INTERVAL_MIN` (in `main.py`) determines how long the program will wait before trying to identify another song.
+- `GIF_LIMIT` (in `main.py`) determines the amount of GIFs downloaded for each term (artist, track, mood).
 
 TODO
 ------------
-- [] Sync speed of GIF to the song BPM
+- [ ] Sync speed of GIF to the song BPM
 
