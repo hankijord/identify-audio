@@ -1,62 +1,40 @@
-MUSIC MOOD GIFS
+🎶 MUSIC MOOD GIFS 🎶
 =======================================
 
-Identify a song and download relevant GIFs from Giphy, based on its mood
+![Marcos Valle](https://media.giphy.com/media/rbJkxEUGJKsa4/giphy.gif)
 
-Dependencies
-------------
+Identify any audio playing on your computer (or microphone) and automatically download GIFs relevant to artist, track and mood. Audio is fingerprinted and identified using Gracenote, which also provides metadata on the mood/emotion, then GIPHY is used to download GIFs based on the artist, track and mood keywords. The program runs on a loop in the background, checking every minute for the current song and generating GIFs.
 
-This script requires:
-
-* Python and PyAudio to record the audio.
-* [Soundflower](https://github.com/mattingalls/Soundflower) to capture audio output into an input PyAudio can use.
-* [SwitchAudioSource](https://github.com/deweller/switchaudio-osx) to programmatically switch between audio devices.
-
-Installation for OS X 64 bit
+Installation (OSX 64 bit)
 ---------------------
 
-1. Make sure PyAudio, Soundflower and SwitchAudioSource are installed.  
+1. Install [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/), [Soundflower](https://github.com/mattingalls/Soundflower) and [SwitchAudioSource](https://github.com/deweller/switchaudio-osx).  
 
-2. In Audio MIDI settings, create a multi-output device. The master device should be "Soundflower (2ch)" and it should use "Soundflower (2ch)" and "Built-in Output". This will allow the script to listen to the audio through the Soundflower device while you continue to hear it through the computer's output. Name the multi-output device "Multi-Output Device (Built-in)" by double-clicking on the name. The script will look for a device with this exact name.  
+2. Install the dependencies: `pip install -r requirements.txt`
 
-3. If you use headphones they will work with the multi-output device you've just made. However, if you also use a USB audio device you'll need to create another multi-output device, this time using "USB Audio Device" rather than "Built-in Output". Call it "Multi-Output Device (USB)" so that the script can pick it up.  
+3. In Audio MIDI settings, create a multi-output device. The master device should be "Soundflower (2ch)" and it should use "Soundflower (2ch)" and "Built-in Output". This will allow the script to listen to the audio through the Soundflower device while you continue to hear it through the computer's output. Name the multi-output device "Multi-Output Device (Built-in)" by double-clicking on the name. The script will look for a device with this exact name.  
 
-4. Make sure the executable and dylib files are together in a directory. 
+4. The script will look for configuration details in a config.rc file that you need to create. You'll also need to create your own Gracenote app and GIPHY app through each of their web interfaces (for free), and replace the details below in the file:  
 
-5. The script will look for configuration details in a .identifyaudio.rc file in your home directly (by default). You can edit the script to provide the details in the script itself or create the configuration file with the following format:  
+> APP_PATH /gracenote/identify-audio  
+> GRACENOTE_LICENCE_PATH gracenote/license.txt
+> GRACENOTE_CLIENT_ID your_details
+> GRACENOTE_CLIENT_TAG your_details
+> GRACENOTE_WEB_ID your_details
+> GIPHY_API_KEY your_details
 
-> APP_PATH /path/to/sample/executable  
-> DISCOGS_KEY your_details  
-> DISCOGS_SECRET your_details  
-> DISCOGS_CONSUMER_KEY your_details  
-> DISCOGS_CONSUMER_SECRET your_details  
-> DISCOGS_USERNAME your_user_name  
-> DISCOGS_REQUEST_TOKEN_URL https://api.discogs.com/oauth/request_token  
-> DISCOGS_ACCESS_TOKEN_URL https://api.discogs.com/oauth/access_token  
-> DISCOGS_AUTHORIZE_URL https://www.discogs.com/oauth/authorize  
-> DISCOGS_BASE_URL https://api.discogs.com/  
-
-(that's the name followed by a single space followed by the value followed by a newline).  
-
-8. You can also change the directory to which the script will write temp files. By default it's `~/Music/temp`. The script will delete files once it's used them in any case.  
-
-9. If you do not have OS X 64-bit you will need to recompile the executable using the Gracenote SDK (it's free).  
-
-10. If you're better at compiling than me it would be great to have a single executable.  
+5. If you do not have OS X 64-bit you will need to recompile the executable using the Gracenote SDK (it's free).   
 
 Usage
 -----
 
-When you are playing a track you want to identify, just type `python identify.py` from the directory. It will try a few times to identify the track and give the album and track names if it finds them.  
+- Run using `python main.py` while music is playing. 
 
-To make the script available from anywhere in the console, move `identify.py` to `/usr/local/bin`, or add its current directory to your path. This will mean you can just use `identify.py` without having to be in a particular directory or type `python`.
+- GIFs are downloaded to the `gif/` folder if a match is found. Each time a new song found, the folder is emptied and replaced with the new song gifs.
+- `RECORD_INTERVAL_MIN` (in `main.py`) determines how long the program will wait before trying to identify another song.
+- `GIF_LIMIT` (in `main.py`) determines the amount of GIFs downloaded for each term (artist, track, mood).
 
-### Flags
+Todo
+------------
+- [ ] Sync speed of GIF to the song BPM
 
-The `--discogs|-d` flag enables Discogs lookup.  
-
-It can be combined with `--want|-w` to automatically add the release to your want list or `--open|-o` to open the release's Discogs page in your webbrowser.  
-
-You will need to authorise the app the first time you want to make changes to your want list.  
-
-It also has a `--quiet|-q` flag to only output matches in JSON format, for use in pipelines, and `--verbose|-v` to get tracebacks.
