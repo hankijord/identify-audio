@@ -1,7 +1,7 @@
-Identify audio playing on your computer
+MUSIC MOOD GIFS
 =======================================
 
-This script can identify any audio playing on your computer. It's useful if you're listening to a mix and want to identify a track without having to use a phone to Shazam your computer's output. Your music will continue playing while it's working. It relies on Gracenote to fingerprint and identify the track. It has integration with Discogs if you want to find the release online.
+Identify a song and download relevant GIFs from Giphy, based on its mood
 
 Dependencies
 ------------

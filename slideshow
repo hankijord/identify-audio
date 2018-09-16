@@ -1,0 +1,2 @@
+#!/bin/bash
+while true; do for i in gifs/*.gif; do cp "$i" slideshow.gif; echo $i; sleep 5; done; done

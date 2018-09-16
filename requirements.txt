@@ -1,0 +1,10 @@
+certifi==2018.8.24
+chardet==3.0.4
+entrypoints==0.2.3
+giphypop==0.3
+idna==2.7
+keyring==15.1.0
+PyAudio==0.2.11
+pygn==0.10.1
+requests==2.19.1
+urllib3==1.23
