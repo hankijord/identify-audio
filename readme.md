@@ -37,4 +37,5 @@ Usage
 Todo
 ------------
 - [ ] Sync speed of GIF to the song BPM
+- [ ] Lyrics keyword recognition
 
